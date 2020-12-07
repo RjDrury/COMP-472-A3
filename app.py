@@ -1,20 +1,9 @@
-from constants import *
-import csv
+from helpers import *
 
 
 def main():
-    tsv_file = open(train_set)
-    read_tsv = csv.reader(tsv_file, delimiter="\t")
-    included_cols = [0, 1, 2]
-    content = []
+    all_claims, covid_claims, non_covid_claims = get_training_data_claims()
 
-    for row in read_tsv:
-        content.append(list(row[i] for i in included_cols))
-
-    for row in content:
-        print(row)
-
-    tsv_file.close()
 
 
 
