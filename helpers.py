@@ -4,7 +4,7 @@ import re
 
 
 def get_training_data_claims():
-    tsv_file = open(train_set)
+    tsv_file = open(train_set, encoding="utf8")
     read_tsv = csv.reader(tsv_file, delimiter="\t")
     train_claims, index_to_id_map, index_to_validity_map = get_claims_lists(read_tsv)
     tsv_file.close()
