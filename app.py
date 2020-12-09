@@ -3,19 +3,19 @@ from nb_bow import *
 
 
 def main():
-    all_claims, covid_claims, non_covid_claims = get_training_data_claims()
+    index_to_content_map, index_to_id_map, index_to_validity_map = get_training_data_claims()
 
-    original_vocab = get_original_vocabulary(all_claims)
-    # print(original_vocab)
-
-    filtered_vocab = get_filtered_vocabulary(all_claims)
-    # print(filtered_vocab)
+    original_vocab = get_original_vocabulary(index_to_content_map)
+    filtered_vocab = get_filtered_vocabulary(index_to_content_map)
 
     print(len(original_vocab))
     print(len(filtered_vocab))
 
+    original_dict = get_list_of_dictionaries(index_to_content_map, original_vocab)
+    filtered_dict = get_list_of_dictionaries(index_to_content_map, filtered_vocab)
+
     # created a model object, needs to be trained and then used to predict
-    model = nb_bow()
+    # model = nb_bow()
 
 
 
