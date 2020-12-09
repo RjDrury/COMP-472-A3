@@ -62,10 +62,10 @@ def get_filtered_vocabulary(documents_list):
 def get_list_of_dictionaries(content_list, vocab):
     list_of_dict = []
     for string in content_list:
-        dict = []
+        dict = {}
         for word in vocab:
             amount = count_occurrences(word, string)
-            dict.append({word: amount})
+            dict[word] = amount
 
         list_of_dict.append(dict)
 
