@@ -9,14 +9,14 @@ def main():
     lab = ['yes', 'yes', 'no']
     model.train(feat, lab)
 
-    original_vocab = get_original_vocabulary(all_claims)
+    '''original_vocab = get_original_vocabulary(all_claims)
     # print(original_vocab)
 
     filtered_vocab = get_filtered_vocabulary(all_claims)
     # print(filtered_vocab)
 
     print(len(original_vocab))
-    print(len(filtered_vocab))
+    print(len(filtered_vocab))'''
 
 
 
