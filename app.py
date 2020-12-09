@@ -1,4 +1,5 @@
 from helpers import *
+from nb_bow import *
 
 
 def main():
@@ -12,6 +13,9 @@ def main():
 
     print(len(original_vocab))
     print(len(filtered_vocab))
+
+    # created a model object, needs to be trained and then used to predict
+    model = nb_bow()
 
 
 
