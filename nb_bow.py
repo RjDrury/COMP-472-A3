@@ -72,13 +72,13 @@ class nb_bow():
         predictions = []
         sum_yes = 0
         sum_no = 0
-        for i in predict_features:
+        for i in range(len(predict_features)):
             tweet_words = np.column_stack((list(predict_features[i].keys()), list(predict_features[i].values())))
             tweet_words = np.flip(tweet_words[tweet_words[:, 1].argsort()], axis=0)
             for j in range(len(tweet_words)):
                 if int(tweet_words[j][1]) != 0:
-                    sum_yes += math.log10(self.conditional_yes[tweet_words[j][0]]) * tweet_words[j][1]
-                    sum_no += math.log10(self.conditional_no[tweet_words[j][0]]) * tweet_words[j][1]
+                    sum_yes += math.log10(self.conditional_yes[tweet_words[j][0]]) * int(tweet_words[j][1])
+                    sum_no += math.log10(self.conditional_no[tweet_words[j][0]]) * int(tweet_words[j][1])
                 else:
                     break
 
