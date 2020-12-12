@@ -21,8 +21,8 @@ def main():
 
     test_claims, index_to_id_map, index_to_validity_map = get_testing_data_claims()
     dict_for_predictions = get_list_of_dict_for_predictions(test_claims)
-    predictions = model.predict(dict_for_predictions)
-    print(predictions)
+    predictions, scores = model.predict(dict_for_predictions)
+    print(predictions, scores)
 
 if __name__ == '__main__':
     main()

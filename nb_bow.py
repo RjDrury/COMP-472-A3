@@ -70,22 +70,28 @@ class nb_bow():
 
     def predict(self, predict_features):
         predictions = []
+        final_score = []
         sum_yes = 0
         sum_no = 0
         for i in range(len(predict_features)):
             tweet_words = np.column_stack((list(predict_features[i].keys()), list(predict_features[i].values())))
             tweet_words = np.flip(tweet_words[tweet_words[:, 1].argsort()], axis=0)
             for j in range(len(tweet_words)):
-                if int(tweet_words[j][1]) != 0:
-                    sum_yes += math.log10(self.conditional_yes[tweet_words[j][0]]) * int(tweet_words[j][1])
-                    sum_no += math.log10(self.conditional_no[tweet_words[j][0]]) * int(tweet_words[j][1])
-                else:
-                    break
+                try:
+                    if int(tweet_words[j][1]) != 0:
+                        sum_yes += math.log10(self.conditional_yes[tweet_words[j][0]]) * int(tweet_words[j][1])
+                        sum_no += math.log10(self.conditional_no[tweet_words[j][0]]) * int(tweet_words[j][1])
+                    else:
+                        break
+                except KeyError:
+                    continue
 
             score_yes = math.log10(self.prior_probs['yes']) + sum_yes
             score_no = math.log10(self.prior_probs['no']) + sum_no
             if score_no > score_yes:
                 predictions.append('no')
+                final_score.append(score_no)
             else:
                 predictions.append('yes')
-        return predictions
+                final_score.append(score_yes)
+        return predictions, final_score
