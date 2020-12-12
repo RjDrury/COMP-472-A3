@@ -15,7 +15,7 @@ def main():
     filtered_dict = get_list_of_dictionaries(index_to_content_map, filtered_vocab)
     # created a model object, needs to be trained and then used to predict
     model = nb_bow()
-    model.train(original_dict, index_to_validity_map)
+    model.train(filtered_dict, index_to_validity_map)
 
     # get output and predict
 
