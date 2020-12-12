@@ -25,11 +25,8 @@ def get_claims_lists(read_tsv):
     included_cols = [0, 1, 2]  # 0 = content & 1 = covid flags
     all_data = []
 
-    idx = 0
     for row in read_tsv:
         all_data.append(list(row[i] for i in included_cols))
-        print(idx)
-        idx+=1
 
     index_to_id_map = [i[0] for i in all_data]
     index_to_content_map = [i[1].lower() for i in all_data]
@@ -74,6 +71,20 @@ def get_list_of_dictionaries(content_list, vocab):
 
     return list_of_dict
 
+def get_list_of_dict_for_predictions(content_list):
+    list_of_dict = []
+    for string in content_list:
+        dict = {}
+        words = string.split(" ")
+        for word in words:
+            if word.startswith("https://"):
+                continue
+            amount = count_occurrences(word, string)
+            dict[word] = amount
+
+        list_of_dict.append(dict)
+
+    return list_of_dict
 
 def count_occurrences(word, sentence):
     return sentence.split().count(word)

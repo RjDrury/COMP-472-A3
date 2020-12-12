@@ -15,7 +15,7 @@
 
 - use the trained model to make predictions by passing an array of tweets organized into an array of how many of each 
   word in the vocabulary occurs in the tweet to the predict method. The method returns an array of yes/no values the 
-  same length as the testing set.  (one prediction pre tweet input)
+  same length as the testing set.  (one prediction per tweet input)
   
   `model.predict(test_features)`
   
