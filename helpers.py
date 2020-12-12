@@ -88,7 +88,7 @@ def count_occurrences(word, sentence):
     return sentence.split().count(word)
 
 def write_trace_file(index_to_id_map, predictions, predition_percentage, index_to_validity_map):
-    trace_file = open("output/"+"trace_NB-BOW-OV", "w")
+    trace_file = open("output/"+"trace_NB-BOW-OV.txt", "w")
 
     for i in range(len(index_to_id_map)):
         label = "wrong"
@@ -97,7 +97,22 @@ def write_trace_file(index_to_id_map, predictions, predition_percentage, index_t
         trace_file.write(index_to_id_map[i] + "  " +  predictions[i] + "  " + str(predition_percentage[i])+ "  " + index_to_validity_map[i] + " " + label +"\n")
 
 def write_eval_file(predictions,index_to_validity_map):
-    trace_file = open("output/"+"eval_NB-BOW-OV", "w")
-    s = metrics.classification_report(index_to_validity_map, predictions)
-    trace_file.write(s)
+    eval_file = open("output/"+"eval_NB-BOW-OV.txt", "w")
+    #s = metrics.classification_report(index_to_validity_map, predictions)
+    #trace_file.write(s)
 
+    accuracy = metrics.accuracy_score(index_to_validity_map,predictions)
+
+    yes_pres_score = metrics.precision_score(index_to_validity_map,predictions, pos_label="yes")
+    no_pres_score = metrics.precision_score(index_to_validity_map,predictions, pos_label="no")
+
+    yes_recall_score = metrics.recall_score(index_to_validity_map,predictions, pos_label="yes")
+    no_recall_score = metrics.recall_score(index_to_validity_map,predictions, pos_label="no")
+
+    yes_f1_score = metrics.f1_score(index_to_validity_map,predictions, pos_label="yes")
+    no_f1_score = metrics.f1_score(index_to_validity_map,predictions, pos_label="no")
+
+    eval_file.write(str(accuracy)+"\n")
+    eval_file.write(str(yes_pres_score) + " " +  str(no_pres_score) + "\n")
+    eval_file.write(str(yes_recall_score) + " " +   str(no_recall_score) + "\n")
+    eval_file.write(str(yes_f1_score) + " " +   str(no_f1_score) + "\n")
