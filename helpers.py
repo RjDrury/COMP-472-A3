@@ -13,7 +13,7 @@ def get_training_data_claims():
 
 
 def get_testing_data_claims():
-    tsv_file = open(test_set)
+    tsv_file = open(test_set, encoding="utf8")
     read_tsv = csv.reader(tsv_file, delimiter="\t")
     test_claims, index_to_id_map, index_to_validity_map = get_claims_lists(read_tsv)
     tsv_file.close()
@@ -25,8 +25,11 @@ def get_claims_lists(read_tsv):
     included_cols = [0, 1, 2]  # 0 = content & 1 = covid flags
     all_data = []
 
+    idx = 0
     for row in read_tsv:
         all_data.append(list(row[i] for i in included_cols))
+        print(idx)
+        idx+=1
 
     index_to_id_map = [i[0] for i in all_data]
     index_to_content_map = [i[1].lower() for i in all_data]

@@ -18,6 +18,12 @@ def main():
     model = nb_bow()
     model.train(filtered_dict, index_to_validity_map)
 
+    # get output and predict
+
+    test_claims, index_to_id_map, index_to_validity_map = get_testing_data_claims()
+    print("test claims ", test_claims)
+    print("idex to id",index_to_id_map)
+    print("index to validity", index_to_validity_map) 
 
 
 if __name__ == '__main__':
