@@ -22,7 +22,8 @@ def main():
     test_claims, index_to_id_map, index_to_validity_map = get_testing_data_claims()
     dict_for_predictions = get_list_of_dict_for_predictions(test_claims)
     predictions, scores = model.predict(dict_for_predictions)
-    print(predictions, scores)
 
+    write_trace_file(index_to_id_map, predictions, scores, index_to_validity_map)
+    write_eval_file(predictions,index_to_validity_map)
 if __name__ == '__main__':
     main()

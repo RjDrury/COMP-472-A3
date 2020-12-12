@@ -1,7 +1,7 @@
 from constants import *
 import csv
 import re
-
+from sklearn import metrics
 
 def get_training_data_claims():
     tsv_file = open(train_set, encoding="utf8")
@@ -77,8 +77,6 @@ def get_list_of_dict_for_predictions(content_list):
         dict = {}
         words = string.split(" ")
         for word in words:
-            if word.startswith("https://"):
-                continue
             amount = count_occurrences(word, string)
             dict[word] = amount
 
@@ -88,3 +86,26 @@ def get_list_of_dict_for_predictions(content_list):
 
 def count_occurrences(word, sentence):
     return sentence.split().count(word)
+
+def write_trace_file(index_to_id_map, predictions, predition_percentage, index_to_validity_map):
+    trace_file = open("output/"+"trace_NB-BOW-FV", "w")
+
+    for i in range(len(index_to_id_map)):
+        label = "wrong"
+        if predictions[i] == index_to_validity_map[i]:
+            label = "correct"
+        trace_file.write(index_to_id_map[i] + "  " +  predictions[i] + "  " + str(predition_percentage[i])+ "  " + index_to_validity_map[i] + " " + label +"\n")
+
+def write_eval_file(predictions,index_to_validity_map):
+    trace_file = open("output/"+"eval_NB-BOW-FV", "w")
+    s = metrics.classification_report(index_to_validity_map, predictions)
+    trace_file.write(s)
+    print(metrics.classification_report(index_to_validity_map, predictions))
+    num_correct_total = 0
+    num_wrong_total = 0
+    num_of_correct_yes = 0
+    num_of_false_positive_yes = 0
+    num_of_correct_no = 0
+    num_of_false_positive_no = 0
+
+
