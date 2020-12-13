@@ -11,7 +11,6 @@ def get_training_data_claims():
 
     return train_claims, index_to_id_map, index_to_validity_map
 
-
 def get_testing_data_claims():
     tsv_file = open(test_set, encoding="utf8")
     read_tsv = csv.reader(tsv_file, delimiter="\t")

@@ -1,4 +1,9 @@
 # COMP-472-A3
+The github url:
+https://github.com/RjDrury/COMP-472-A3
+
+To run this project:
+`python app.py`
 
 ## nb_bow model object
 **To train a model and use it to predict:**
@@ -23,3 +28,4 @@
 
 **Libraries used:**
 - csv
+- sklearn
