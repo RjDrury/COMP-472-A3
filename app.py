@@ -8,8 +8,8 @@ def main():
     original_vocab = get_original_vocabulary(index_to_content_map)
     filtered_vocab = get_filtered_vocabulary(index_to_content_map)
 
-    # print(len(original_vocab))
-    # print(len(filtered_vocab))
+    print("original ", len(original_vocab))
+    print("Filtered ",len(filtered_vocab))
 
     original_dict = get_list_of_dictionaries(index_to_content_map, original_vocab)
     filtered_dict = get_list_of_dictionaries(index_to_content_map, filtered_vocab)
